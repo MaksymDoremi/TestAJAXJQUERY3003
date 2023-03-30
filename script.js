@@ -7,3 +7,7 @@ class LikeFacts{
 class DislikedFacts{
 	constructor(id, img)
 }
+
+function GenerateNewDogFact(){
+	
+}
