@@ -16,20 +16,18 @@ let Liked = [];
 let Disliked = [];
 
 function GenerateNewDogFact(){
-	var req = new XMLHttpRequest();
-	req.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			console.log('success');
-
-			let result = JSON.parse(this.response);
-
-
-		} else {
-			console.log('error');
-		}
-	}
-	req.open("GET", URL, true);
-	req.send();
+	$.ajax({
+    url: URL,
+    type: "GET",
+    dataType: "jsonp",
+    crossDomain: true,
+    success: function(data) {
+        console.log(data);
+    },
+    error: function(xhr, status, error) {
+        console.error(status, error);
+    }
+});
 }
 
 function Like(){
@@ -43,21 +41,7 @@ function Dislike(){
 		$('.factText').val()
 		);
 }
-/*
-<div class="card">
-					
-					<div class="card-body">
-						
-						<p class="factText">Facts</p>
-						<a href="#" class="btn btn-primary" onclick="Like()">Like</a>
-						<a href="#" class="btn btn-primary" onclick="Dislike()">Dislike</a>
-						
-					</div>
-				</div>
 
-
-
-*/
 function ShowLiked(){
 	$('#placeForCards').html('');
 
